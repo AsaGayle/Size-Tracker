@@ -4,11 +4,11 @@ in the parsed CSV file
 """
 import csv
 import smtplib
-from datetime import datetime
+#from datetime import datetime
 from settings import SENDER_EMAIL, SENDER_PASSWORD
 
 
-CURRENT_TIME = str(datetime.now().hour) + ":" + str(datetime.now().minute)
+#CURRENT_TIME = str(datetime.now().hour) + ":" + str(datetime.now().minute)
 MSG = """From: Asa Gayle <asimplesmtptest@gmail.com>
 To: {} <{}>
 Subject: Testing
@@ -38,7 +38,7 @@ def send_emails(message, csv_file):
         for row in csv_reader:
             name, email = row
             try:
-                smtp.sendmail(SENDER_EMAIL, email, message.format(name, email, name, CURRENT_TIME))
+                smtp.sendmail(SENDER_EMAIL, email, message.format(name, email))
             except smtplib.SMTPException:
                 print('wtf Yahoo')
         smtp.quit()
